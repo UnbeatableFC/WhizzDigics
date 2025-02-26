@@ -1,0 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.section {
+    @apply py-24 md:py-32 lg:py-14
+}
