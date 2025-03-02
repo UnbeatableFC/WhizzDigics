@@ -3,5 +3,13 @@
 @import "tailwindcss/utilities";
 
 .section {
-    @apply py-24 md:py-32 lg:py-14
+  @apply py-24 md:py-32 lg:py-14;
+}
+
+.line {
+  @apply overflow-hidden;
+}
+
+.word {
+  @apply translate-y-full;
 }

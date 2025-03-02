@@ -32,6 +32,7 @@ const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [topLineScope, topLineAnimate] = useAnimate();
   const [bottomLineScope, bottomLineAnimate] = useAnimate();
+  const [navScope, navAnimate] = useAnimate();
 
   useEffect(() => {
     if (isOpen) {
@@ -53,6 +54,16 @@ const Header: FC = () => {
           },
         ],
       ]);
+
+      navAnimate(
+        navScope.current,
+        {
+          height: "100%",
+        },
+        {
+          duration: 0.7,
+        }
+      );
     } else {
       topLineAnimate([
         [
@@ -82,6 +93,10 @@ const Header: FC = () => {
           },
         ],
       ]);
+
+      navAnimate(navScope.current, {
+        height: "0",
+      });
     }
   }, [
     isOpen,
@@ -89,11 +104,61 @@ const Header: FC = () => {
     topLineScope,
     bottomLineAnimate,
     bottomLineScope,
+    // navAnimate,
+    // navScope,
   ]);
+
+  const handleClickMobNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const url = new URL(e.currentTarget.href);
+    const hash = url.hash;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    target.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
   return (
     <header className="">
-      <div className="fixed top-0 left-0 w-full mix-blend-difference backdrop-blur-md">
+      <div
+        className="flex fixed top-0 left-0 w-full h-0 overflow-hidden bg-stone-900 z-10"
+        ref={navScope}
+      >
+        <nav className="mt-20 flex flex-col w-full">
+          {navItems.map(({ label, href }) => (
+            <a
+              href={href}
+              key={label}
+              className="text-stone-200 border-t last:border-b border-stone-800 py-8 group/nav-item relative isolate"
+              onClick={handleClickMobNavItem}
+            >
+              <div className="container !max-w-full flex items-center justify-between">
+                <span className="text-3xl group-hover/nav-item:pl-4 transition-all duration-500">
+                  {label}
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </div>
+              <div className="absolute w-full h-0 bg-stone-800 group-hover/nav-item:h-full transition-all duration-500 bottom-0 -z-10"></div>
+            </a>
+          ))}
+        </nav>
+      </div>
+      <div className="fixed top-0 left-0 w-full mix-blend-difference backdrop-blur-md z-10">
         <div className="container !max-w-full">
           <div className="flex justify-between h-20 items-center">
             <div>
@@ -106,11 +171,14 @@ const Header: FC = () => {
           </div>
         </div>
       </div>
-      <div className="fixed top-0 left-0 w-full">
+      <div className="fixed z-10 top-0 left-0 w-full">
         <div className="container !max-w-full">
           <div className="flex justify-end h-20 items-center">
             <div className="flex items-center gap-4">
-              <div className="size-11 border border-stone-400 bg-stone-200 rounded-full inline-flex items-center justify-center cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+              <div
+                className="size-11 border border-stone-400 bg-stone-200 rounded-full inline-flex items-center justify-center cursor-pointer"
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 <svg
                   width="24"
                   height="24"
