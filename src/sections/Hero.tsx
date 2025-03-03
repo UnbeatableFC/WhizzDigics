@@ -1,47 +1,28 @@
 "use client";
 import { FC, useEffect, useRef } from "react";
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 import heroImage from "@/assets/images/hero.jpg";
 import Image from "next/image";
 import Button from "@/components/Button";
-import SplitType from "split-type";
-import {
-  useAnimate,
-  motion,
-  stagger,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 const Hero: FC = () => {
-  const [titleScope, titleAnimate] = useAnimate();
   const scrollingDiv = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: scrollingDiv,
     offset: ["start end", "end end"],
   });
 
-  const potraitWidth = useTransform(scrollYProgress, [0, 1], ["100%", "240%"]);
-  useEffect(() => {
-    new SplitType(titleScope.current, {
-      types: "lines,words",
-      tagName: "span",
-    });
+  const portraitWidth = useTransform(scrollYProgress, [0, 1], ["100%", "240%"]);
 
-    titleAnimate(
-      titleScope.current.querySelectorAll(".word"),
-      {
-        transform: "translateY(0)",
-      },
-      {
-        duration: 0.5,
-        delay: stagger(0.2),
-      }
-    );
-  }, [titleAnimate, titleScope]);
+  const { scope, entranceAnimation } = useTextRevealAnimation();
+
+  useEffect(() => {
+    entranceAnimation();
+  }, [entranceAnimation]);
 
   return (
-    <section>
+    <section id="about">
       <div className="grid md:grid-cols-12 md:h-screen items-stretch sticky top-0">
         <div className="md:col-span-7 flex flex-col justify-center">
           <div className="container !max-w-full">
@@ -49,7 +30,7 @@ const Hero: FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-5xl md:text-6xl lg:text-7xl mt-40 md:mt-0"
-              ref={titleScope}
+              ref={scope}
             >
               Crafting digital experiences through code and creativity in
               designs.
@@ -120,7 +101,7 @@ const Hero: FC = () => {
           <motion.div
             className="mt-20 md:mt-0 md:size-full md:absolute md:right-0 max-md:!w-full"
             style={{
-              width: potraitWidth,
+              width: portraitWidth,
             }}
           >
             <Image
