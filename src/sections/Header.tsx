@@ -104,8 +104,8 @@ const Header: FC = () => {
     topLineScope,
     bottomLineAnimate,
     bottomLineScope,
-    // navAnimate,
-    // navScope,
+    navAnimate,
+    navScope,
   ]);
 
   const handleClickMobNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {

@@ -1,7 +1,6 @@
 "use client";
-import { stagger, useAnimate, useInView } from "motion/react";
-import { FC, useEffect,useRef } from "react";
-import SplitType from "split-type";
+import { useInView } from "motion/react";
+import { FC, useEffect, useRef } from "react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 const Intro: FC = () => {
@@ -18,7 +17,11 @@ const Intro: FC = () => {
   }, [inView, entranceAnimation]);
 
   return (
-    <section className="section mt-12 md:mt-16 lg:mt-20" id="intro" ref={sectionRef}>
+    <section
+      className="section mt-12 md:mt-16 lg:mt-20"
+      id="intro"
+      ref={sectionRef}
+    >
       <div className="container">
         <h2 className="text-4xl md:text-7xl lg:[80%] lg:text-8xl" ref={scope}>
           Creating visually appealing and highly functional websites using
