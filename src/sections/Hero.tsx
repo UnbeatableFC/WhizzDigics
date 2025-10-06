@@ -5,6 +5,7 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import { motion, useScroll, useTransform } from "motion/react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
+import { Badge } from "@/components/ui/badge";
 
 const Hero: FC = () => {
   const scrollingDiv = useRef<HTMLDivElement>(null);
@@ -32,6 +33,7 @@ const Hero: FC = () => {
               className="text-5xl md:text-6xl lg:text-7xl mt-40 md:mt-0"
               ref={scope}
             >
+              <Badge>FRONT END DEVELOPRER</Badge>
               Crafting digital experiences through code and creativity in
               designs.
             </motion.h1>
