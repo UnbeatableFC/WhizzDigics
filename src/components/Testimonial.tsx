@@ -67,7 +67,7 @@ function Testimonial(
       )}
       {...rest}
     >
-      <div className="aspect-square md:aspect-[9/16] md:col-span-2 relative">
+      <div className="aspect-square md:aspect-9/16 md:col-span-2 relative">
         <motion.div
           className="absolute h-full bg-stone-900"
           initial={{ width: "100%" }}

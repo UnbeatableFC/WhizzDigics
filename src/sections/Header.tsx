@@ -134,7 +134,7 @@ const Header: FC = () => {
               className="text-stone-200 border-t last:border-b border-stone-800 py-8 group/nav-item relative isolate"
               onClick={handleClickMobNavItem}
             >
-              <div className="container !max-w-full flex items-center justify-between">
+              <div className="container max-w-full! flex items-center justify-between">
                 <span className="text-3xl group-hover/nav-item:pl-4 transition-all duration-500">
                   {label}
                 </span>
@@ -159,7 +159,7 @@ const Header: FC = () => {
         </nav>
       </div>
       <div className="fixed top-0 left-0 w-full mix-blend-difference backdrop-blur-md z-10">
-        <div className="container !max-w-full">
+        <div className="container max-w-full!">
           <div className="flex justify-between h-20 items-center">
             <div>
               <a href="/">
@@ -172,7 +172,7 @@ const Header: FC = () => {
         </div>
       </div>
       <div className="fixed z-10 top-0 left-0 w-full">
-        <div className="container !max-w-full">
+        <div className="container max-w-full!">
           <div className="flex justify-end h-20 items-center">
             <div className="flex items-center gap-4">
               <div

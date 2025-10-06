@@ -26,7 +26,7 @@ const Hero: FC = () => {
     <section id="about">
       <div className="grid md:grid-cols-12 md:h-screen items-stretch sticky top-0">
         <div className="md:col-span-7 flex flex-col justify-center">
-          <div className="container !max-w-full">
+          <div className="container max-w-full!">
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -101,7 +101,7 @@ const Hero: FC = () => {
         </div>
         <div className="md:col-span-5 relative">
           <motion.div
-            className="mt-20 md:mt-0 md:size-full md:absolute md:right-0 max-md:!w-full"
+            className="mt-20 md:mt-0 md:size-full md:absolute md:right-0 max-md:w-full!"
             style={{
               width: portraitWidth,
             }}

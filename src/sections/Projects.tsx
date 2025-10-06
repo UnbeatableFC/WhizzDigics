@@ -51,7 +51,7 @@ const Projects: FC = () => {
                     className="size-full object-cover"
                   />
                 </div>
-                <div className="mt-8 md:mt-0 flex items-center justify-between md:grid md:[grid-template-columns:1fr_300px_max-content] md:gap-8">
+                <div className="mt-8 md:mt-0 flex items-center justify-between md:grid md:grid-cols-[1fr_300px_max-content] md:gap-8">
                   <div className="lg:group-hover/project:pl-8 transition-all duration-700">
                     <h3 className="text-2xl md:text-3xl lg:text-4xl">{name}</h3>
                   </div>
